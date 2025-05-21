@@ -7,13 +7,13 @@ This repository, `whsalazar-org/ReusableWorkflowsSecretsDemo---Caller`, demonstr
 
 ## Repository Structure
 
-*   **`.github/workflows/basic.yml`**: This is the main "caller" workflow. It defines two jobs, each calling a different reusable workflow to showcase the two secret-passing methods.
+*   **`.github/workflows/CallerDemo.yml`**: This is the main "caller" workflow. It defines two jobs, each calling a different reusable workflow to showcase the two secret-passing methods.
 *   **`.github/workflows/reusable-workflow-explicit.yml`**: A reusable workflow designed to receive a secret that is explicitly passed by the caller. It declares the secret it expects in its `on.workflow_call.secrets` section.
 *   **`.github/workflows/reusable-workflow-inherit.yml`**: A reusable workflow that accesses secrets made available by the caller through `secrets: inherit`. It does not declare specific secrets in its `on.workflow_call.secrets` section for this purpose.
 
 ## How It Works
 
-### 1. Caller Workflow (`basic.yml`)
+### 1. Caller Workflow (`DemoCaller.yml`)
 
 This workflow is triggered on `push` or `pull_request` to the `main` branch, or manually via `workflow_dispatch`.
 
