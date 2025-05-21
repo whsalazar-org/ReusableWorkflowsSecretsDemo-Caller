@@ -33,5 +33,7 @@ jobs:
     with:
       # You can pass inputs if your reusable workflow defines them
       environment_tag: "production"
-    secrets: inherit # Pass all secrets from the caller that are available to this workflow.
-                     # The reusable workflow can then access any of these secrets by their original names.
+    secrets: inherit 
+    
+    # Pass all secrets from the caller that are available to this workflow.
+    # The reusable workflow can then access any of these secrets by their original names.
