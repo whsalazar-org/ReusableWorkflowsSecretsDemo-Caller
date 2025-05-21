@@ -1,4 +1,5 @@
 # This is the caller workflow
+
 name: ReusableWorkflow-Caller-Demo
 
 # Controls when the workflow will run
@@ -16,7 +17,7 @@ on:
 jobs:
   call-reusable-explicitly-passing-secrets:
     name: Call Reusable Workflow (Explicit Secrets)
-    uses: ./.github/workflows/reusable-workflow-explicit.yml # Path to the local reusable workflow
+    uses: ./.github/workflows/reusable-workflow-explicit.yml 
     with:
       # You can pass inputs if your reusable workflow defines them
       username: ${{ github.actor }}
@@ -28,7 +29,7 @@ jobs:
 
   call-reusable-inheriting-secrets:
     name: Call Reusable Workflow (Inherit Secrets)
-    uses: ./.github/workflows/reusable-workflow-inherit.yml # Path to the local reusable workflow
+    uses: ./.github/workflows/reusable-workflow-inherit.yml 
     with:
       # You can pass inputs if your reusable workflow defines them
       environment_tag: "production"
