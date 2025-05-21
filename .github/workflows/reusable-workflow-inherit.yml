@@ -19,12 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Display Environment Tag
-        run: echo "Operating with environment tag: ${{ inputs.environment_tag }}"
+        run: echo "Operating with environment tag:${{ inputs.environment_tag }}"
 
       - name: Attempt to access an inherited secret
         # This step tries to use a secret named 'A_SECRET_FROM_CALLER_REPO'.
         # For this to work, 'A_SECRET_FROM_CALLER_REPO' must exist in the caller repository's secrets
         # and be accessible to the 'ReusableWorkflow-Caller-Demo' workflow.
+        
         run: |
           if [ -n "${{ secrets.A_SECRET_FROM_CALLER_REPO }}" ]; then
             echo "Successfully accessed 'A_SECRET_FROM_CALLER_REPO' via secrets: inherit."
