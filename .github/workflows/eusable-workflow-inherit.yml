@@ -1,0 +1,43 @@
+# Reusable workflow that uses inherited secrets
+
+name: Reusable Workflow - Inherit Secrets Demo
+
+on:
+  workflow_call:
+    inputs:
+      environment_tag:
+        description: 'An example input for environment tagging'
+        required: false
+        type: string
+        default: 'staging'
+    # No 'secrets:' block is defined here for the workflow_call trigger.
+    # This means when 'secrets: inherit' is used by the caller, this workflow
+    # can attempt to access any secret that was available to the caller.
+
+jobs:
+  use-inherited-secret:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display Environment Tag
+        run: echo "Operating with environment tag: ${{ inputs.environment_tag }}"
+
+      - name: Attempt to access an inherited secret
+        # This step tries to use a secret named 'A_SECRET_FROM_CALLER_REPO'.
+        # For this to work, 'A_SECRET_FROM_CALLER_REPO' must exist in the caller repository's secrets
+        # and be accessible to the 'ReusableWorkflow-Caller-Demo' workflow.
+        run: |
+          if [ -n "${{ secrets.A_SECRET_FROM_CALLER_REPO }}" ]; then
+            echo "Successfully accessed 'A_SECRET_FROM_CALLER_REPO' via secrets: inherit."
+            # You can use the secret here
+          else
+            echo "Warning: Could not access 'A_SECRET_FROM_CALLER_REPO'. 
+            Ensure it exists in the caller repository secrets and is available to the calling workflow."
+          fi
+
+      - name: Attempt to access another inherited secret (e.g., a common one)
+        run: |
+          if [ -n "${{ secrets.ANOTHER_INHERITED_SECRET }}" ]; then
+            echo "Successfully accessed 'ANOTHER_INHERITED_SECRET' via secrets: inherit."
+          else
+            echo "Warning: Could not access 'ANOTHER_INHERITED_SECRET'."
+          fi
