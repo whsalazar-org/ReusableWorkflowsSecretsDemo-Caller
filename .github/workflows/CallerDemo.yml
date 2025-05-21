@@ -1,5 +1,4 @@
 # This is the caller workflow
-
 name: ReusableWorkflow-Caller-Demo
 
 # Controls when the workflow will run
